@@ -1,0 +1,283 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Vendas 
+{
+    public static void main(String[] args) 
+    {
+
+        int Total = 0;
+        veiculo carro;
+        
+        ArrayList<opcional> itensOpc = new ArrayList<opcional>();
+
+        String nomeCarro = "";
+
+        opcional TrioEletrico = new opcional(900);
+        opcional ArCondicionado = new opcional(1200);
+        opcional DirecaoHidraulica = new opcional(1350);
+        opcional BancosCouro = new opcional(1850);
+        opcional Multimidia = new opcional(3200);
+
+        modelo Basic = new modelo("Basic");
+        modelo Sedan = new modelo("Sedan", TrioEletrico, ArCondicionado);
+        modelo Sport = new modelo("Sport", TrioEletrico, ArCondicionado, BancosCouro, DirecaoHidraulica);
+        modelo Executive = new modelo("Executive", TrioEletrico, ArCondicionado, BancosCouro, DirecaoHidraulica);
+
+        Scanner tec = new Scanner(System.in);
+
+        int resposta = -1;
+        while (resposta != 0) 
+        {
+
+            System.out.println("\tEscolha o Carro: ");
+            System.out.println("1- Fusca");
+            System.out.println("2- Brasilia");
+            System.out.println("3- Opala");
+            System.out.println("0- Sair");
+
+            resposta = tec.nextInt();
+
+            switch (resposta) 
+            {
+                case 1:
+                    nomeCarro = "Fusca";
+                    break;
+                case 2:
+                    nomeCarro = "Brasilia";
+                    break;
+                case 3:
+                    nomeCarro = "Opala";
+                    break;
+                default:
+                    break;
+            }
+            carro = new veiculo(nomeCarro);
+
+            System.out.println("\tQual o modelo do veiculo?: ");
+            System.out.println("1- Basic");
+            System.out.println("2- Sedan");
+            System.out.println("3- Sport");
+            System.out.println("4- Executive");
+            System.out.println("0- Sair");
+
+            resposta = tec.nextInt();
+            switch (resposta) 
+            {
+                case 1:
+                    carro.setModelo(Basic);
+                    break;
+                case 2:
+                    carro.setModelo(Sedan);
+                    break;
+                case 3:
+                    carro.setModelo(Sport);
+                    break;
+                case 4:
+                    carro.setModelo(Executive);
+                    break;
+                default:
+                    break;
+            }
+
+            for (int i = 0; i < 2; i++) 
+            {
+
+                if (carro.getModelo().equals(Basic)) 
+                {
+                    System.out.println("1- Add Trio Eletrico");
+                    System.out.println("2- Add Ar Condicionado");
+                    System.out.println("3- Add Direcao Hidraulica");
+                    System.out.println("4- Add Bancos de Couro");
+                    System.out.println("5- Add Multimidia");
+                    System.out.println("0- Sair");
+                    resposta = tec.nextInt();
+                    switch (resposta) 
+                    {
+                        case 1:
+                            if (!itensOpc.contains(TrioEletrico)) 
+                            {
+                                itensOpc.add(TrioEletrico);
+                            } else 
+                            {
+                                System.out.println("nao pode itens repetidos");
+                            }
+                            break;
+                            
+                        case 2:
+                            if (!itensOpc.contains(ArCondicionado)) 
+                            {
+                                itensOpc.add(ArCondicionado);
+                            } else 
+                            {
+                                System.out.println("nao pode itens repetidos");
+                            }
+                            break;
+                            
+                        case 3:
+                            if (!itensOpc.contains(DirecaoHidraulica)) 
+                            {
+                                itensOpc.add(DirecaoHidraulica);
+                            } else 
+                            {
+                                System.out.println("nao pode itens repetidos");
+                            }
+                            break;
+                            
+                        case 4:
+                            if (!itensOpc.contains(BancosCouro)) 
+                            {
+                                itensOpc.add(BancosCouro);
+                            } else 
+                            {
+                                System.out.println("nao pode itens repetidos");
+                            }
+                            break;
+                            
+                        case 5:
+                            if (!itensOpc.contains(Multimidia)) 
+                            {
+                                itensOpc.add(Multimidia);
+                            } else 
+                            {
+                                System.out.println("nao pode itens repetidos");
+                            }
+                            break;
+                            
+                        default:
+                            break;
+                    }
+
+                }
+                if (carro.getModelo().equals(Sedan)) 
+                {
+                    System.out.println("3- Add Direcao Hidraulica");
+                    System.out.println("4- Add Bancos de Couro");
+                    System.out.println("5- Add Multimidia");
+                    System.out.println("6- Continuar sem adicionar");
+                    System.out.println("0- Sair");
+                    resposta = tec.nextInt();
+                    switch (resposta) 
+                    {
+                        case 3:
+                            itensOpc.add(TrioEletrico);
+                            break;
+                            
+                        case 4:
+                            itensOpc.add(TrioEletrico);
+                            break;
+                            
+                        case 5:
+                            itensOpc.add(TrioEletrico);
+                            break;
+                            
+                        case 6:
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                }
+
+                if (carro.getModelo().equals(Sport) || carro.getModelo().equals(Executive)) 
+                {
+                    System.out.println("5- Add Multimidia");
+                    System.out.println("6- Continuar sem adicionar");
+                    System.out.println("0- Sair");
+                    resposta = tec.nextInt();
+                    switch (resposta) 
+                    {
+                        case 5:
+                            itensOpc.add(Multimidia);
+                        case 6:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            
+            if (carro.getNome().equals("Fusca") && carro.getModelo().equals(Basic)) 
+            {
+                Total += 20000;
+            }
+            if (carro.getNome().equals("Fusca") && carro.getModelo().equals(Sedan)) 
+            {
+                Total += 27000;
+            }
+            if (carro.getNome().equals("Fusca") && carro.getModelo().equals(Sport)) 
+            {
+                Total += 28500;
+            }
+            if (carro.getNome().equals("Fusca") && carro.getModelo().equals(Executive)) 
+            {
+                Total += 32000;
+            }
+
+
+            if (carro.getNome().equals("Brasilia") && carro.getModelo().equals(Basic)) 
+            {
+                Total += 20700;
+            }
+            if (carro.getNome().equals("Brasilia") && carro.getModelo().equals(Sedan)) 
+            {
+                Total += 27900;
+            }
+            if (carro.getNome().equals("Brasilia") && carro.getModelo().equals(Sport)) 
+            {
+                Total += 30500;
+            }
+            if (carro.getNome().equals("Brasilia") && carro.getModelo().equals(Executive)) 
+            {
+                Total += 35000;
+            }
+
+
+            if (carro.getNome().equals("Opala") && carro.getModelo().equals(Basic)) 
+            {
+                Total += 25000;
+            }
+            if (carro.getNome().equals("Opala") && carro.getModelo().equals(Sedan)) 
+            {
+                Total += 29200;
+            }
+            if (carro.getNome().equals("Opala") && carro.getModelo().equals(Sport)) 
+            {
+                Total += 31500;
+            }
+            if (carro.getNome().equals("Opala") && carro.getModelo().equals(Executive)) 
+            {
+                Total += 37000;
+            }
+
+            if (itensOpc.contains(TrioEletrico)) 
+            {
+                Total += 900;
+            }
+            if (itensOpc.contains(ArCondicionado)) 
+            {
+                Total += 1200;
+            }
+            if (itensOpc.contains(DirecaoHidraulica)) 
+            {
+                Total += 1350;
+            }
+            if (itensOpc.contains(BancosCouro)) 
+            {
+                Total += 1850;
+            }
+            if (itensOpc.contains(Multimidia)) 
+            {
+                Total += 3200;
+            }
+
+            System.out.println(carro.toString());
+            System.out.println("Valor do seu Carro: R$" + Total);
+            System.out.println("\n\n");
+            
+            Total = 0;
+        }
+
+    }
+
+}
