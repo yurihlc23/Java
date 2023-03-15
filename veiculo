@@ -1,0 +1,41 @@
+public class veiculo {
+    
+    private String nome;
+    private modelo modelo;
+
+    
+    public veiculo(String nome) {
+        this.nome = nome;
+    }
+
+
+    public String getNome() {
+        return nome;
+    }
+
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+
+    public modelo getModelo() {
+        return modelo;
+    }
+
+
+    public void setModelo(modelo modelo) {
+        this.modelo = modelo;
+    }
+
+
+    @Override
+    public String toString() {
+        return "veiculo [nome=" + nome + ", modelo=" + modelo + "]";
+    }
+
+
+
+    
+    
+}
